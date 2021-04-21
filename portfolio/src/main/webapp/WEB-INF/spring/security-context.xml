@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans">
+	<bean class="org.zerock.security.CustomAccessDeniedHandler"
+		id="customAccessDenied" />
+	<bean
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+		id="bcryptPasswordEncoder" />
+	<bean class="org.zerock.security.CustomUserDetailsService"
+		id="customUserDetailsService" />
+	<security:http>
+		
+		<!-- <security:form-login/> -->
+		<security:form-login login-page="/customLogin" />
+
+		<!-- <security:access-denied-handler error-page="/accessError"/> -->
+	<security:access-denied-handler
+			ref="customAccessDenied" />
+		<security:logout
+			delete-cookies="remember-me,JSESSION_ID" invalidate-session="true"
+			logout-url="/customLogout" />
+		<security:remember-me
+			token-validity-seconds="604800" data-source-ref="dataSource" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="customUserDetailsService">
+
+			<!-- <security:authentication-provider> -->
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

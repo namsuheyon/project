@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="org.zerock.mapper.LikesMapper">
+<!-- 동일 게시글 추천 여부 검색 -->
+		<!-- 동일 게시글 추천 여부 검색 -->
+	<select id="check" resultType="int">
+		select count(*) from like_bool where bno = #{likes.bno} and userid = #{likes.username}
+	</select>
+	
+	<select id="updatecount">
+		UPDATE tbl_board SET likes = 
+		(select count(*) from like_bool where bno = #{likes.bno})
+		where #{likes.bno} = tbl_board.bno
+	</select>
+	
+	<!-- 게시글 추천 -->
+	<insert id="update">
+		insert into like_bool values(#{likes.bno}, #{likes.username})
+	</insert>
+	
+	<!-- 게시글 추천 취소 -->
+	<delete id="delete">
+		delete from like_bool  where bno = #{likes.bno} and userid = #{likes.username}
+	</delete>
+	
+	<!-- 게시글 추천수 -->
+	<select id="count" resultType="int">
+		select count(*) from like_bool where bno = #{bno}
+	</select>
+</mapper>

@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.footer {
+	background-color: gray;
+	height: 50px;
+}
+.m-0 {
+	padding: 10px 0px;
+}
+tbl_view {
+	height: 40px;
+}
+.toplist {
+	background-color:#CCCCCC
+}
+.get_title_group {
+	background-color:#778899
+}
+.get_title {
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: white;
+    font-size: 20px;
+}
+.get_writer {
+	font-size: 20px;
+	color: white;
+	float: right;
+	max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.likesbtn {
+	width: 150px;
+ 	margin-bottom : 30px; 
+}
+.w3-center {
+	text-align: center;
+}
+.w3-right {
+	text-align: right;
+}
+
+.input-group {
+	margin: 10px; 1px;
+	width: 98%;
+}
+.btn_size {
+	width: 60px;
+	height: 40px;
+}
+.reply {
+	position: relative; left: 20px;
+}
+.reply button {
+	position: relative; right: 20px;
+}
+.reply small {
+	position: relative; right: 20px;
+}
